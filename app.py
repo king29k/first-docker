@@ -8,7 +8,7 @@ HTML_PAGE = """
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Bienvenue chez Ali</title>
+    <title>Bienvenue chez King</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -19,7 +19,27 @@ HTML_PAGE = """
             text-align: center;
             padding-top: 100px;
             animation: fadeIn 1s ease-in;
-            overflow: hidden;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background-color: #203a43;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #17a2b8;
+            text-shadow: 0 0 5px #17a2b8;
         }
         .container {
             background-color: rgba(255, 255, 255, 0.1);
@@ -28,6 +48,7 @@ HTML_PAGE = """
             box-shadow: 0 8px 16px rgba(0,0,0,0.4);
             animation: slideIn 1s ease-in;
             position: relative;
+            margin-top: 80px;
         }
         h1 {
             font-size: 3em;
@@ -71,6 +92,36 @@ HTML_PAGE = """
             z-index: -1;
             animation: fadeIn 2s ease-in;
         }
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        .footer {
+            background-color: #203a43;
+            padding: 5px; /* Réduit de 25px à 10px */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+            font-size: 0.9em; /* Ajout pour réduire la taille de la police */
+        }
+        .footer a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #17a2b8;
+            text-shadow: 0 0 5px #17a2b8;
+        }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -90,17 +141,65 @@ HTML_PAGE = """
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">King's App</a>
+            <div>
+                <a href="#">Accueil</a>
+                <a href="#">À propos</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
     <div class="particles">
         <canvas id="particleCanvas"></canvas>
     </div>
     <div class="container">
         <span class="icon">👋</span>
-        <h1>Bonjour à tous !</h1>
+        <h1 id="typing-text"></h1>
         <p>Bienvenue sur l'application <strong>Flask</strong> conteneurisée avec <strong>Docker</strong>.</p>
-        <p>Développée avec ❤️ par <strong>king</strong>.</p>
+        <p>Développée par <strong>king</strong>.</p>
         <p>🚀 Simple. Propre. Dockerisé.</p>
+        <p>Cette application a été conçue pour offrir une expérience utilisateur fluide et moderne. Grâce à Flask, elle est légère et rapide, tandis que Docker garantit une portabilité et une scalabilité optimales.</p>
         <a href="#" class="btn btn-primary">Découvrir plus</a>
     </div>
+
+    <!-- Section fonctionnalités -->
+    <div class="container mt-5">
+        <h2>Fonctionnalités</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <span class="icon">⚡</span>
+                    <h3>Rapide</h3>
+                    <p>Optimisée pour des performances maximales.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <span class="icon">🔒</span>
+                    <h3>Sécurisée</h3>
+                    <p>Protection avancée des données utilisateurs.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <span class="icon">🌐</span>
+                    <h3>Scalable</h3>
+                    <p>Prête à grandir avec votre entreprise.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2023 King's App. Tous droits réservés.</p>
+    </footer>
+
     <script>
         // Animation de particules simples
         const canvas = document.getElementById('particleCanvas');
@@ -154,6 +253,30 @@ HTML_PAGE = """
 
         init();
         animate();
+
+        // Effet de machine à écrire pour le titre
+        const text = "Bonjour à tous !";
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        window.onload = typeWriter;
+
+        // Effet de défilement pour les sections
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.feature-card');
+            elements.forEach(el => {
+                const position = el.getBoundingClientRect().top;
+                if (position < window.innerHeight - 100) {
+                    el.style.opacity = 1;
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        });
     </script>
 </body>
 </html>
