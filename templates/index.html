@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenue chez Ali</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+    <div id="tsparticles"></div>
+    <div class="container">
+        <span class="icon">👑</span>
+        <h1>Bienvenue chez <strong>Ali</strong></h1>
+        <p>Projet Flask & Docker, stylé et performant.</p>
+        <a href="#about" class="btn">En savoir plus</a>
+    </div>
+    <section id="about">
+        <h2>À propos</h2>
+        <p>Cette application est conçue pour être...</p>
+    </section>
+</body>
+</html>
