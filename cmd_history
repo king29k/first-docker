@@ -1,0 +1,6 @@
+docker build -t king1-flask-app .
+docker run -d -p 5000:5000 king1-flask-app
+docker ps
+docker login
+docker tag king1-flask-app robot29/king1-flask-app
+docker push robot29/king1-flask-app
