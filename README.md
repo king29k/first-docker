@@ -72,30 +72,3 @@ Accéder à l’app via : http://localhost:5000
 
 * ✅ Capture écran du site et lien fonctionnel
 
-📋 Exemple de contenu pour cmd_history
-bash
-Copier
-Modifier
-docker build -t king1-flask-app .
-docker run -d -p 5000:5000 king1-flask-app
-docker ps
-docker login
-docker tag king1-flask-app alidockerhub/king1-flask-app
-docker push alidockerhub/king1-flask-app
-💡 Pour aller plus loin
-Ajouter une base de données (SQLite, PostgreSQL)
-
-Créer une page "À propos"
-
-Ajouter une route /api/status qui retourne du JSON
-
-Déployer sur un VPS (Render, Railway, etc.)
-
-👑 Auteur
-Ali, le king du Flask Dockerisé 😎
-GitHub : https://github.com/tonusername
-
-yaml
-Copier
-Modifier
-
